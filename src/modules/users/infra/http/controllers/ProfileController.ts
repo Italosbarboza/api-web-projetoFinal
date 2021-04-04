@@ -4,10 +4,13 @@ import { classToClass } from "class-transformer";
 
 import UpdateProfileService from "@modules/users/services/UpdateProfileService";
 import ShowProfileService from "@modules/users/services/ShowProfileService";
+import IndexAlunoProfileService from "@modules/users/services/IndexAlunoProfileService";
+import IndexProfessorProfileService from "@modules/users/services/IndexProfessorProfileService";
+
 
 export default class ProfileController {
   public async show(request: Request, response: Response): Promise<Response> {
-    const user_id = request.user.login;
+    const user_id = request.user.id;
 
     const showProfileService = container.resolve(ShowProfileService);
 
@@ -15,6 +18,25 @@ export default class ProfileController {
 
     return response.json(classToClass(user));
   }
+
+  public async indexAluno(request: Request, response: Response): Promise<Response> {
+
+    const indexAlunoProfileService = container.resolve(IndexAlunoProfileService);
+
+    const user = await indexAlunoProfileService.execute();
+
+    return response.json(classToClass(user));
+  }
+
+  public async indexProfessores(request: Request, response: Response): Promise<Response> {
+
+    const indexProfessorProfileService = container.resolve(IndexProfessorProfileService);
+
+    const user = await indexProfessorProfileService.execute();
+
+    return response.json(classToClass(user));
+  }
+
 
   public async update(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.login;

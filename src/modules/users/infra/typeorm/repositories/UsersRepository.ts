@@ -55,20 +55,18 @@ class UsersRepository implements IUsersRepository {
     return userLevel;
   }*/
 
-  public async findAllProviders({
-    expect_user_id,
-  }: IFindAllProvidersDTO): Promise<User[]> {
-    let users: User[];
+  public async findAllAlunos(): Promise<User[]> {
 
-    if (expect_user_id) {
-      users = await this.ormRepository.find({
-        where: {
-          id: Not(expect_user_id),
-        },
-      });
-    } else {
-      users = await this.ormRepository.find();
-    }
+    const users = await this.ormRepository.find({where: {nivel_acesso: 3}});
+
+
+    return users;
+  }
+
+  public async findAllProfessores(): Promise<User[]> {
+
+    const users = await this.ormRepository.find({where: {nivel_acesso: 2}});
+
 
     return users;
   }

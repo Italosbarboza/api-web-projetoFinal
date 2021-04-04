@@ -11,6 +11,11 @@ const profileController = new ProfileController();
 profileRouter.use(authMiddleware);
 
 profileRouter.get("/", profileController.show);
+
+profileRouter.get("/alunos/all", profileController.indexAluno);
+
+profileRouter.get("/professores/all", profileController.indexProfessores);
+
 profileRouter.put(
   "/",
   celebrate({
