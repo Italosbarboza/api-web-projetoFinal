@@ -14,7 +14,12 @@ profileRouter.get("/", profileController.show);
 
 profileRouter.get("/alunos/all", profileController.indexAluno);
 
+profileRouter.delete("/aluno/:id_delete", profileController.deleteAluno);
+
 profileRouter.get("/professores/all", profileController.indexProfessores);
+
+profileRouter.delete("/professor/:id_delete", profileController.deleteProfessor);
+
 
 profileRouter.put(
   "/",

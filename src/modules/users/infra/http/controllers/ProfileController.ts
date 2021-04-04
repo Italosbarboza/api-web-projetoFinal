@@ -6,6 +6,8 @@ import UpdateProfileService from "@modules/users/services/UpdateProfileService";
 import ShowProfileService from "@modules/users/services/ShowProfileService";
 import IndexAlunoProfileService from "@modules/users/services/IndexAlunoProfileService";
 import IndexProfessorProfileService from "@modules/users/services/IndexProfessorProfileService";
+import DeleteAlunoService from "@modules/users/services/DeleteAlunoService";
+import DeleteProfessorService from "@modules/users/services/DeleteProfessorService";
 
 
 export default class ProfileController {
@@ -37,6 +39,45 @@ export default class ProfileController {
     return response.json(classToClass(user));
   }
 
+  public async deleteAluno(request: Request, response: Response): Promise<Response> {
+
+    const user_id = request.user.id;
+
+    const { id_delete } = request.params;
+
+    console.log(id_delete);
+   
+    const deleteAlunoService = container.resolve(
+      DeleteAlunoService,
+    );
+
+    const users = await deleteAlunoService.execute({
+      user_id,
+      id_delete,
+    });
+
+    return response.json({message: 'ok'});  
+  }
+
+  public async deleteProfessor(request: Request, response: Response): Promise<Response> {
+
+    const user_id = request.user.id;
+
+    const { id_delete } = request.params;
+
+    console.log(id_delete);
+   
+    const deleteProfessorService = container.resolve(
+      DeleteProfessorService,
+    );
+
+    const users = await deleteProfessorService.execute({
+      user_id,
+      id_delete,
+    });
+
+    return response.json({message: 'ok'});  
+  }
 
   public async update(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.login;

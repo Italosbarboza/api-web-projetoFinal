@@ -71,6 +71,11 @@ class UsersRepository implements IUsersRepository {
     return users;
   }
 
+  public async deleteAluno(alunoDelete: User): Promise<void> {
+    await this.ormRepository.remove(alunoDelete);
+  }
+
+
   public async create(userData: ICreateUserDTO): Promise<User> {
     const user = this.ormRepository.create(userData);
 
