@@ -15,4 +15,5 @@ export default interface IUsersRepository {
   findByHash(hash: string): Promise<User | undefined>;
   resetHashAndDateForgot(login: string): Promise<User | undefined>;
   deleteAluno(alunoDelete: User): Promise<void>;
+  save(user: User): Promise<User>;
 }

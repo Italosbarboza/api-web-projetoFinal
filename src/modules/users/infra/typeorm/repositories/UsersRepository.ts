@@ -102,6 +102,12 @@ class UsersRepository implements IUsersRepository {
     return userSave;
   }
 
+  public async save(user: User): Promise<User> {
+    const userSave = await this.ormRepository.save(user);
+
+    return userSave;
+  }
+
   public async resetHashAndDateForgot(login: string): Promise<User | undefined> {
     const userFind = await this.ormRepository.findOne(login);
 

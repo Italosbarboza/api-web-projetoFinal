@@ -8,7 +8,6 @@ class User {
   id: number;
 
   @Column("varchar")
-  @Exclude()
   email: string;
 
   @Column("varchar")

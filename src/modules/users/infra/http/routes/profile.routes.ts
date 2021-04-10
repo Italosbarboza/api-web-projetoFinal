@@ -22,14 +22,16 @@ profileRouter.delete("/professor/:id_delete", profileController.deleteProfessor)
 
 
 profileRouter.put(
-  "/",
+  "/:id_update",
   celebrate({
     [Segments.BODY]: {
-      name: Joi.string().required(),
-      email: Joi.string().email().required(),
-      old_password: Joi.string(),
-      password: Joi.string(),
-      password_confirmation: Joi.string().valid(Joi.ref("password")),
+      email: Joi.string().email(),
+      nome: Joi.string(),
+      idade: Joi.number(),
+      telefone: Joi.number(),
+      nivel_acesso: Joi.number(), 
+      cpf: Joi.string(), 
+      senha: Joi.string(),
     },
   }),
   profileController.update,
