@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinColumn, JoinTable } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinColumn, JoinTable, OneToMany } from "typeorm";
 import { Exclude } from "class-transformer";
 import Groups from "./Groups";
+import Treino from "@modules/exercises/infra/typeorm/entities/Treino";
 
 @Entity("usuario", {database: "crossfit"})
 class User {
@@ -27,6 +28,9 @@ class User {
 
   @Column("int")
   nivel_acesso: number;
+
+  @OneToMany(() => Treino, treino => treino.user)
+  treino: Treino[];
 }
 
 export default User;
