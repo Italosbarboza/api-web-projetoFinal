@@ -24,8 +24,8 @@ class TreinosRepository implements ITreinoRepository {
 
   public async index(id_professor: number): Promise<Treino[]> {
     const rawData = await this.entityManager.query(`
-    select * from treino
-    where id_professor = ${id_professor} 
+    select *, DATE_FORMAT(data_treino,'%d/%m/%Y') as data_treino from treino
+    where id_professor = ${id_professor} ORDER BY data_treino DESC;
     `);
 
     return rawData;
