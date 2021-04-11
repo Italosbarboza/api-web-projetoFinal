@@ -11,11 +11,11 @@ export default class TreinoController {
   public async createTreino(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
 
-    const { data_treino, aquecimento, tecnica, wood } = request.body;
+    const { aquecimento, tecnica, wood } = request.body;
 
     const createTreinoService = container.resolve(CreateTreinoService);
 
-    const treino = await createTreinoService.execute({ user_id, data_treino, aquecimento, tecnica, wood });
+    const treino = await createTreinoService.execute({ user_id, aquecimento, tecnica, wood });
 
     return response.json(classToClass(treino));
   }

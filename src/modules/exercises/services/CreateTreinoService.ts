@@ -5,10 +5,10 @@ import AppError from "@shared/errors/AppError";
 import IUsersRepository from "@modules/users/repositories/IUsersRepository";
 import ITreinoRepository from '../repositories/ITreinoRepository';
 import Treino from "../infra/typeorm/entities/Treino";
+import moment from 'moment';
 
 interface IRequest {
   user_id: string;
-  data_treino: string;
   aquecimento: string;
   tecnica: string;
   wood: string; 
@@ -24,7 +24,7 @@ class CreateTreinoService {
     private treinoRepository: ITreinoRepository,
   ) {}
 
-  public async execute({ user_id, data_treino, aquecimento, tecnica, wood  }: IRequest): Promise<Treino> {
+  public async execute({ user_id, aquecimento, tecnica, wood  }: IRequest): Promise<Treino> {
     const checkUserExists = await this.usersRepository.findById(user_id);
 
     if (!checkUserExists) {
@@ -32,6 +32,8 @@ class CreateTreinoService {
     }
     
     const id_professor=  Number(user_id);
+
+    const data_treino = moment().format('YYYY-MM-DD');
 
     const treino = await this.treinoRepository.create({
       data_treino, 
