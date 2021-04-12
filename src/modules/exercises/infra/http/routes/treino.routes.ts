@@ -12,6 +12,10 @@ treinoRouter.use(authMiddleware);
 
 treinoRouter.post("/", treinoController.createTreino);
 
+treinoRouter.post("/treinoUsuario", treinoController.createTreinoUsuario);
+
+treinoRouter.get("/treinoDia", treinoController.indexTreinosDia);
+
 treinoRouter.get("/", treinoController.indexTreinos);
 
 //treinoRouter.delete("/professor/:id_delete", treinoController.deleteProfessor);
