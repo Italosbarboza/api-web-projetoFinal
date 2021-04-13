@@ -12,4 +12,7 @@ export default interface ITreinoRepository {
   deleteTreino(id_delete: string): Promise<void>;
   indexTreinoUsuario(): Promise<TreinoUsuario[]>;
   findTreinoDiaUsuario(id_usuario: string, data_cadastro: string): Promise<TreinoUsuario[]>;
+  indexTreinoUsuarioAluno(user_id: number): Promise<TreinoUsuario[]>;
+  indexTreinoUsuarioProfessor(user_id: number): Promise<TreinoUsuario[]>;
+
 }

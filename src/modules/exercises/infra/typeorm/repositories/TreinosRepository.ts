@@ -82,6 +82,27 @@ class TreinosRepository implements ITreinoRepository {
     return rawData;
   }
 
+  public async indexTreinoUsuarioAluno(user_id: number): Promise<TreinoUsuario[]> {
+    const rawData = await this.entityManager.query(`
+    select *, 
+    DATE_FORMAT(t.data_cadastro,'%d/%m/%Y') as data_cadastro from usuariotreino as t
+    where id_usuario = ${user_id};
+    `);
+
+    return rawData;
+  }
+
+  public async indexTreinoUsuarioProfessor(user_id: number): Promise<TreinoUsuario[]> {
+    const rawData = await this.entityManager.query(`
+    select *, 
+    DATE_FORMAT(t.data_cadastro,'%d/%m/%Y') as data_cadastro from usuariotreino as t
+    where id_professor = ${user_id};
+    `);
+
+    return rawData;
+  }
+
+
 
   public async deleteTreino(id_delete: string): Promise<void> {
     await this.entityManager.query(`
