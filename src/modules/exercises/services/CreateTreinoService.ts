@@ -35,6 +35,12 @@ class CreateTreinoService {
 
     const data_treino = moment().format('YYYY-MM-DD');
 
+    const verificarTreino =  await this.treinoRepository.findTreinoDia(user_id, data_treino);
+
+    if(verificarTreino.length != 0) {
+      throw new AppError("Você já registrou seu treino diário. Para registrar um novo treino, exclua o anterior.");
+    }
+    
     const treino = await this.treinoRepository.create({
       data_treino, 
       aquecimento, 

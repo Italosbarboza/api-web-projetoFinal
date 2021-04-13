@@ -18,7 +18,7 @@ treinoRouter.get("/treinoDia", treinoController.indexTreinosDia);
 
 treinoRouter.get("/", treinoController.indexTreinos);
 
-//treinoRouter.delete("/professor/:id_delete", treinoController.deleteProfessor);
+treinoRouter.delete("/:id_delete", treinoController.deleteTreino);
 
 
 export default treinoRouter;

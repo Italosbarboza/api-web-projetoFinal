@@ -8,4 +8,6 @@ export default interface ITreinoRepository {
   index(id_professor: number): Promise<Treino[]>;
   indexTreinoDia(): Promise<Treino[]>;
   createTreinoUsuario(treino : TreinoUsuario): Promise<TreinoUsuario>;
+  findTreinoDia(user_id: string, data_treino: string): Promise<[]>;
+  deleteTreino(id_delete: string): Promise<void>;
 }

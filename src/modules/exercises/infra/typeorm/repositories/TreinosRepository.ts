@@ -44,6 +44,7 @@ class TreinosRepository implements ITreinoRepository {
 
   public async indexTreinoDia(): Promise<Treino[]> {
     const data_treino = moment().format('YYYY-MM-DD');
+    console.log(data_treino)
     const rawData = await this.entityManager.query(`
     select t.id, t.aquecimento, t.tecnica, t.wood, u.nome as professor, 
     DATE_FORMAT(t.data_treino,'%d/%m/%Y') as data_treino from treino as t left join usuario as u on u.id = t.id_professor
@@ -52,7 +53,23 @@ class TreinosRepository implements ITreinoRepository {
 
     return rawData;
   }
-  
+
+  public async findTreinoDia(user_id: string, data_treino: string): Promise<[]> {
+    const rawData = await this.entityManager.query(`
+    select *, 
+    DATE_FORMAT(t.data_treino,'%d/%m/%Y') as data_treino from treino as t
+    where DATE_FORMAT(t.data_treino, '%Y-%m-%d') = '${data_treino}' AND id_professor = ${user_id};
+    `);
+
+    return rawData;
+  }
+
+  public async deleteTreino(id_delete: string): Promise<void> {
+    await this.entityManager.query(`
+    DELETE FROM treino WHERE id = ${id_delete};
+    `);
+
+  }  
 }
 
 export default TreinosRepository;
