@@ -30,6 +30,12 @@ class CreateTreinoUsuarioService {
     }
 
     const data_cadastro = moment().format('YYYY-MM-DD');
+
+    const findTreino = await this.treinoRepository.findTreinoDiaUsuario(user_id, data_cadastro);
+
+    if(findTreino.length != 0) {
+      throw new AppError("Você já registrou seu treino. Caso tenha confundido, apague o anterior e cadastre o novo treino");
+    }
     
     const treino = await this.treinoRepository.createTreinoUsuario({
         id_usuario, 
