@@ -42,6 +42,14 @@ class TreinosRepository implements ITreinoRepository {
     return rawData;
   }
 
+  public async indexTreinoUsuario(): Promise<TreinoUsuario[]> {
+    const rawData = await this.entityManager.query(`
+    select *, DATE_FORMAT(data_cadastro,'%d/%m/%Y') as data_treino from usuariotreino;
+    `);
+
+    return rawData;
+  }
+
   public async indexTreinoDia(): Promise<Treino[]> {
     const data_treino = moment().format('YYYY-MM-DD');
     console.log(data_treino)

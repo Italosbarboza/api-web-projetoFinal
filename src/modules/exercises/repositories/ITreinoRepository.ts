@@ -10,4 +10,6 @@ export default interface ITreinoRepository {
   createTreinoUsuario(treino : TreinoUsuario): Promise<TreinoUsuario>;
   findTreinoDia(user_id: string, data_treino: string): Promise<[]>;
   deleteTreino(id_delete: string): Promise<void>;
+  indexTreinoUsuario(): Promise<TreinoUsuario[]>;
+
 }

@@ -28,6 +28,8 @@ class CreateTreinoUsuarioService {
     if (!checkUserExists) {
       throw new AppError("Usuário não existe");
     }
+
+    const data_cadastro = moment().format('YYYY-MM-DD');
     
     const treino = await this.treinoRepository.createTreinoUsuario({
         id_usuario, 
@@ -35,7 +37,8 @@ class CreateTreinoUsuarioService {
         quilocalorias_queimadas, 
         batimento_cardiaco,
         massa_muscular,
-        porcentagem_gordura
+        porcentagem_gordura,
+        data_cadastro
     });
 
     return treino;

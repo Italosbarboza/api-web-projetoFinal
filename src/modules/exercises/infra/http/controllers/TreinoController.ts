@@ -7,6 +7,7 @@ import IndexTreinoService from "@modules/exercises/services/IndexTreinoService";
 import IndexTreinoDiaService from "@modules/exercises/services/IndexTreinoDiaService";
 import CreateTreinoUsuarioService from "@modules/exercises/services/CreateTreinoUsuarioService";
 import DeleteTreinoService from "@modules/exercises/services/DeleteTreinoService";
+import IndexTreinoUsuarioService from "@modules/exercises/services/IndexTreinoUsuarioService";
 
 export default class TreinoController {
 
@@ -45,6 +46,17 @@ export default class TreinoController {
 
     return response.json(classToClass(treinos));
   }
+
+  public async indexTreinoUsuario(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+
+    const indexTreinoUsuarioService = container.resolve(IndexTreinoUsuarioService);
+
+    const treinos = await indexTreinoUsuarioService.execute();
+
+    return response.json(classToClass(treinos));
+  }
+
 
   public async indexTreinosDia(request: Request, response: Response): Promise<Response> {
     

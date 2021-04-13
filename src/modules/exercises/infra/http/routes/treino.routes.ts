@@ -18,6 +18,8 @@ treinoRouter.get("/treinoDia", treinoController.indexTreinosDia);
 
 treinoRouter.get("/", treinoController.indexTreinos);
 
+treinoRouter.get("/treinoUsuario", treinoController.indexTreinoUsuario);
+
 treinoRouter.delete("/:id_delete", treinoController.deleteTreino);
 
 

@@ -22,6 +22,9 @@ class TreinoUsuario {
 
   @Column("decimal")
   porcentagem_gordura: string;
+  
+  @Column("date")
+  data_cadastro: string;
 }
 
 export default TreinoUsuario;
